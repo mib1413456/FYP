@@ -16,6 +16,13 @@ def sigmoid(x, derivative = False):
 	else:
 		return 1 / (1 + np.exp(-x))
 
+def tanh(x, derivative = False):
+	if(derivative == True):
+		return np.tanh(x)
+
+	else:
+		x = np.tan(x)
+		return 1 - (x * x)
 
 #input matrix (3 input nodes and 4 training examples)
 x = np.array([[0, 0, 1],
@@ -44,7 +51,7 @@ for interation in xrange(100000):
 
 	#Let network try to "predict" the output given the input to see how it performs
 	#We take the dot product of an instance of the input with the weights and put it through the sigmoid function and so with 4 inputs, we get 4 guesses
-	guess = sigmoid(np.dot(inputLayer, weights1))
+	guess = tanh(np.dot(inputLayer, weights1))
 
 	#Checking how errornous the guess was by subtracting it from the actual answer
 	error = y - guess
@@ -52,9 +59,10 @@ for interation in xrange(100000):
 	# multiply how much we missed by the
 	# slope of the sigmoid at the values in list1
 	# a delta is a variation of a function or variable
-	guess_delta = error * sigmoid(guess, True)
+	guess_delta = error * tanh(guess, True)
 
 	weights1 += np.dot(inputLayer.T, guess_delta)
 
 print "Output after training: "
-print guess
+for i in guess:
+	print i
