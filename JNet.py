@@ -34,13 +34,14 @@ x = np.array([[0, 0, 1],
 #Since each column is an output node and we have 1 column, the betwork is 3 inputs and 1 output
 y = np.array([[0, 0, 1, 1]]).T
 
-np.random.seed(5)
+np.random.seed(5) #good practice to seed random numbers so they are always generated the same way
 
 #At first, weights are initialized randomly with mean 0
 #Interesting to note that the neural network is really just this matrix of weights
+#This is a 3 x 1 matrix of weights
 weights1 = 2 * np.random.random((3, 1)) - 1
 
-for interation in xrange(100000):
+for interation in xrange(10000):
 	#Forward propagation
 
 	#First layer is simply data, so its explicitly described at this point
@@ -51,7 +52,7 @@ for interation in xrange(100000):
 	guess = tanh(np.dot(inputLayer, weights1))
 
 	#Checking how errornous the guess was by subtracting it from the actual answer
-	error = y - guess
+	error = guess - y
 
 	# multiply how much we missed by the
 	# slope of the sigmoid at the values in list1
@@ -62,4 +63,4 @@ for interation in xrange(100000):
 
 print "Output after training: "
 for i in guess:
-	print i
+	print '{:.20f}'.format(i[0])
