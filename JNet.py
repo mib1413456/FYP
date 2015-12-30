@@ -32,10 +32,7 @@ x = np.array([[0, 0, 1],
 
 #output matrix (Transposed to make it 4 rows and 1 column)
 #Since each column is an output node and we have 1 column, the betwork is 3 inputs and 1 output
-y = np.array([[0,
-			   0,
-			   1,
-			   1]]).T
+y = np.array([[0, 0, 1, 1]]).T
 
 np.random.seed(5)
 
