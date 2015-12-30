@@ -51,11 +51,11 @@ for interation in xrange(10000):
 	#We take the dot product of an instance of the input with the weights and put it through the sigmoid function and so with 4 inputs, we get 4 guesses
 	guess = tanh(np.dot(inputLayer, weights1))
 
-	#Checking how errornous the guess was by subtracting it from the actual answer
+	#Checking how errornous the guess was by subtracting the actual answer from it
 	error = guess - y
 
 	# multiply how much we missed by the
-	# slope of the sigmoid at the values in list1
+	# slope of the sigmoid at the values in guess
 	# a delta is a variation of a function or variable
 	guess_delta = error * tanh(guess, True)
 
