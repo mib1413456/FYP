@@ -38,29 +38,40 @@ np.random.seed(5) #good practice to seed random numbers so they are always gener
 
 #At first, weights are initialized randomly with mean 0
 #Interesting to note that the neural network is really just this matrix of weights
-#This is a 3 x 1 matrix of weights
-weights1 = 2 * np.random.random((3, 1)) - 1
+#This is a 3 x 4 matrix of weights
+weights1 = 2 * np.random.random((3, 4)) - 1
+#This is a 4 x 1 matrix of weights
+weights2 = 2 * np.random.random((4, 1)) - 1
 
 for interation in xrange(100000):
 	#Forward propagation
 
 	#First layer is simply data, so its explicitly described at this point
-	inputLayer = x
+	layer0 = x
 
 	#Let network try to "predict" the output given the input to see how it performs
 	#We take the dot product of an instance of the input with the weights and put it through the sigmoid function and so with 4 inputs, we get 4 guesses
-	guess = sigmoid(np.dot(inputLayer, weights1))
+	layer1 = sigmoid(np.dot(layer0, weights1))
+	layer2 = sigmoid(np.dot(layer1, weights2))
 
 	#Checking how errornous the guess was by subtracting the guess from the actual answer
-	error = y - guess
+	error_from_layer2 = y - layer2
 
+	if(interation % 10000) == 0:
+		print "Error : " + str(np.mean(np.abs(error_from_layer2)))
 	# multiply how much we missed by the
 	# slope of the sigmoid at the values in guess
 	# a delta is a variation of a function or variable
-	guess_delta = error * sigmoid(guess, True)
+	layer2_delta = error_from_layer2 * sigmoid(layer2, True) #slope of the values of layer 2
 
-	weights1 += np.dot(inputLayer.T, guess_delta)
+	#How much did the first layer contribute to the second layer errors according to the weights?
+	layer1_error = layer2_delta.dot(weights2.T)
+
+	layer1_delta = layer1_error * sigmoid(layer1, True) #slope of the values of layer 1
+
+	weights2 += np.dot(layer1.T, layer2_delta)
+	weights1 += np.dot(layer0.T, layer1_delta)
 
 print "Output after training: "
-for i in guess:
+for i in layer2:
 	print '{:.20f}'.format(i[0])
