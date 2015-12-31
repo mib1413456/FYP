@@ -39,9 +39,9 @@ np.random.seed(5) #good practice to seed random numbers so they are always gener
 #At first, weights are initialized randomly with mean 0
 #Interesting to note that the neural network is really just this matrix of weights
 #This is a 3 x 4 matrix of weights
-weights1 = 2 * np.random.random((3, 4)) - 1
+weights1 = 2 * np.random.random((3, 6)) - 1
 #This is a 4 x 1 matrix of weights
-weights2 = 2 * np.random.random((4, 1)) - 1
+weights2 = 2 * np.random.random((6, 1)) - 1
 
 for interation in xrange(100000):
 	#Forward propagation
