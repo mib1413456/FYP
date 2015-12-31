@@ -1,3 +1,4 @@
+#!/usr/bin/python2.7
 import numpy as np #linear algebra library
 """
 Essentially trying to compute these outputs from these inputs
