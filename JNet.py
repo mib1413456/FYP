@@ -18,7 +18,7 @@ def sigmoid(x, derivative = False):
 
 def tanh(x, derivative = False):
 	if(derivative == True):
-		x = np.tan(x)
+		x = np.tanh(x)
 		return 1 - (x * x)
 
 	else:
@@ -41,7 +41,7 @@ np.random.seed(5) #good practice to seed random numbers so they are always gener
 #This is a 3 x 1 matrix of weights
 weights1 = 2 * np.random.random((3, 1)) - 1
 
-for interation in xrange(10000):
+for interation in xrange(100000):
 	#Forward propagation
 
 	#First layer is simply data, so its explicitly described at this point
@@ -49,15 +49,15 @@ for interation in xrange(10000):
 
 	#Let network try to "predict" the output given the input to see how it performs
 	#We take the dot product of an instance of the input with the weights and put it through the sigmoid function and so with 4 inputs, we get 4 guesses
-	guess = tanh(np.dot(inputLayer, weights1))
+	guess = sigmoid(np.dot(inputLayer, weights1))
 
-	#Checking how errornous the guess was by subtracting the actual answer from it
-	error = guess - y
+	#Checking how errornous the guess was by subtracting the guess from the actual answer
+	error = y - guess
 
 	# multiply how much we missed by the
 	# slope of the sigmoid at the values in guess
 	# a delta is a variation of a function or variable
-	guess_delta = error * tanh(guess, True)
+	guess_delta = error * sigmoid(guess, True)
 
 	weights1 += np.dot(inputLayer.T, guess_delta)
 
