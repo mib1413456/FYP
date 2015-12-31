@@ -18,11 +18,11 @@ def sigmoid(x, derivative = False):
 
 def tanh(x, derivative = False):
 	if(derivative == True):
-		return np.tanh(x)
-
-	else:
 		x = np.tan(x)
 		return 1 - (x * x)
+
+	else:
+		return np.tanh(x)
 
 #input matrix (3 input nodes and 4 training examples)
 x = np.array([[0, 0, 1],
