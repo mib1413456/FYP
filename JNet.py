@@ -3,7 +3,7 @@ import numpy as np #linear algebra library
 """
 Essentially trying to compute these outputs from these inputs
 
-  Inputs	  Output
+     Inputs	  	      Output
 0	0	1		0
 1	1	1		1
 1	0	1		1
@@ -27,12 +27,12 @@ def tanh(x, derivative = False):
 
 #input matrix (3 input nodes and 4 training examples)
 x = np.array([[0, 0, 1],
-			  [0, 1, 1],
-			  [1, 0, 1], 
-			  [1, 1, 1]])
+	      [0, 1, 1],
+	      [1, 0, 1], 
+	      [1, 1, 1]])
 
 #output matrix (Transposed to make it 4 rows and 1 column)
-#Since each column is an output node and we have 1 column, the betwork is 3 inputs and 1 output
+#Since each column is an output node and we have 1 column, the network is 3 inputs and 1 output
 y = np.array([[0, 0, 1, 1]]).T
 
 np.random.seed(5) #good practice to seed random numbers so they are always generated the same way
